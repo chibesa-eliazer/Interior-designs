@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colors | LUXE Architecture</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text-main: #1a1a1a;
+            --accent: #d4af37;
+            --glass-blue: rgba(10, 35, 65, 0.85);
+            --glass-border: rgba(100, 180, 255, 0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg); font-family: 'Inter', sans-serif; color: var(--text-main); overflow-x: hidden; }
+
+        /* Floating Blue Glass Header */
+        header {
+            padding: 20px 0;
+            text-align: center;
+            position: sticky;
+            top: 20px;
+            width: 90%;
+            margin: 0 auto;
+            border-radius: 100px;
+            background: var(--glass-blue);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--glass-border);
+            z-index: 1000;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+        }
+
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; letter-spacing: 8px; text-transform: uppercase; color: white; margin-bottom: 5px; }
+        nav a { text-decoration: none; color: rgba(255, 255, 255, 0.7); margin: 0 15px; font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; transition: 0.3s; }
+        nav a:hover { color: var(--accent); }
+
+        /* Compact Section Intro - Matching your preferred spacing */
+        .section-intro {
+            padding: 50px 0 25px 0;
+            text-align: center;
+            background: radial-gradient(circle at center, #ffffff 0%, #f9f9f9 100%);
+        }
+
+        .section-intro h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .separator {
+            width: 180px;
+            height: 1px;
+            background-color: var(--accent);
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .separator::after {
+            content: "◆";
+            color: var(--accent);
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.7rem;
+            background: #fff;
+            padding: 0 15px;
+        }
+
+        .container { 
+            max-width: 1400px; 
+            margin: 0 auto 60px auto; 
+            padding: 0 20px; 
+        }
+        
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 35px; 
+        }
+
+        .grid-item { 
+            position: relative; 
+            overflow: hidden; 
+            border-radius: 28px; 
+            height: 520px; 
+            background: #f0f0f0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .grid-item img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: 1.5s cubic-bezier(0.2, 1, 0.3, 1); 
+        }
+
+        .grid-item:hover img { transform: scale(1.08); }
+
+        /* Blue Glass Label Overlay */
+        .item-info {
+            position: absolute; 
+            bottom: 20px; left: 20px; right: 20px; 
+            padding: 22px;
+            background: var(--glass-blue); 
+            backdrop-filter: blur(15px); 
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border); 
+            border-radius: 20px; 
+            color: white;
+        }
+
+        .item-info h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 400; margin-bottom: 2px; }
+        .item-info span { font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; opacity: 0.8; }
+        
+        @media (max-width: 1100px) { .grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 750px) { .grid { grid-template-columns: 1fr; } .section-intro h1 { font-size: 2.5rem; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">LUXE</div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="bedroom.html">Bedrooms</a>
+            <a href="kitchen.html">Kitchens</a>
+            <a href="livingrooms.html">Living</a>
+            <a href="colors.html" style="color: var(--accent);">Colors</a>
+        </nav>
+    </header>
+
+    <div class="section-intro">
+        <h1>The Chromatic Gallery</h1>
+        <div class="separator"></div>
+    </div>
+
+    <main class="container">
+        <div id="color-grid" class="grid"></div>
+    </main>
+
+    <script>
+        const grid = document.getElementById('color-grid');
+
+        // Loop through the new color range: 200 to 231
+        for (let i = 200; i <= 231; i++) {
+            const imgName = `${i}.jpeg`;
+            const div = document.createElement('div');
+            div.className = 'grid-item';
+            div.innerHTML = `
+                <img src="photos/${imgName}" alt="Color Palette Inspiration" loading="lazy">
+                <div class="item-info">
+                    <h3>Chromatic Study</h3>
+                    <span>Palette Ref: ${i}</span>
+                </div>
+            `;
+            grid.appendChild(div);
+        }
+    </script>
+</body>
+</html>
